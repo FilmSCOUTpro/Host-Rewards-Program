@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earning with FilmSCOUTpro</title>
+    <style>
+        :root {
+            --brand-blue: #0047d5; 
+            --brand-pink: #d11952; 
+            --brand-yellow: #ffeb00; 
+            --brand-black: #000000;
+            --brand-white: #ffffff;
+            --brand-green: #22c55e;
+            --cloud-gray: #f4f4f5; 
+        }
+
+        body {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), 
+                              url("https://ik.imagekit.io/zmjtdg822h/STEVE'S%20FOLDER/Screenshot%202025-06-26%20at%205.15.14%E2%80%AFPM.png");
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: var(--brand-black);
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .logo-header { padding: 30px 60px; text-align: left; }
+        .main-logo { max-width: 250px; width: 100%; height: auto; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 60px 80px 60px; position: relative; z-index: 1; }
+        
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); font-weight: 400; letter-spacing: -1.5px; margin: 0; line-height: 1.1; }
+        .bold-text { font-weight: 800; }
+        .bold-italic { font-weight: 800; font-style: italic; }
+        
+        .subheader { 
+            font-size: clamp(1rem, 4vw, 1.45rem); 
+            margin-top: 15px; 
+            color: var(--brand-black); 
+            font-style: italic; 
+            letter-spacing: 0.5px;
+            text-wrap: balance;
+        }
+
+        .intro-frame {
+            background-color: var(--cloud-gray);
+            border: 1px solid #e4e4e7;
+            border-radius: 40px;
+            padding: clamp(40px, 7vw, 75px); /* Increased padding for better framing */
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .zoom-content { transition: transform 0.4s ease; transform: scale(1); }
+        
+        /* Unified Width for both paragraphs */
+        .intro-frame p { 
+            max-width: 1100px; 
+            margin-left: auto; 
+            margin-right: auto;
+            text-wrap: balance; 
+        }
+
+        .top-p {
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .bottom-p {
+            font-size: clamp(1.2rem, 2.5vw, 1.45rem); /* Slightly larger to fill the width */
+            line-height: 1.6;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .intro-frame:hover { transform: scale(1.01); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+        .intro-frame:hover .zoom-content { transform: scale(1.02); }
+
+        .program-header { font-size: clamp(1.8rem, 6vw, 3.2rem); font-weight: 400; letter-spacing: -1px; margin: 80px 0 50px 0; line-height: 1.1; text-align: center; }
+
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+
+        @media (max-width: 950px) {
+            h1 { 
+                font-size: 4.8rem !important; 
+                line-height: 0.95 !important; 
+                letter-spacing: -2px !important; 
+                margin-bottom: 40px !important;
+            }
+            .tier-grid { grid-template-columns: 1fr; }
+            .logo-header { text-align: center; padding: 20px; }
+            .container { padding: 40px 20px; }
+            .intro-frame { padding: 40px 25px; border-radius: 30px; }
+            .top-p, .bottom-p { font-size: 1.15rem !important; line-height: 1.6 !important; }
+            .main-logo { max-width: 180px; }
+            .mobile-stack { display: block; margin-bottom: 2px; }
+            .no-wrap { white-space: nowrap; display: block; }
+        }
+
+        .tier-card { color: var(--brand-white); padding: clamp(30px, 5vw, 45px); border-radius: 30px; display: flex; flex-direction: column; text-align: left; transition: all 0.4s ease; cursor: pointer; position: relative; }
+        .tier-card:hover { transform: translateY(-8px); }
+        .vip-card { background-color: var(--brand-pink); }
+        .pro-card { background-color: var(--brand-blue); }
+        .proplus-card { background-color: var(--brand-yellow); color: var(--brand-black); }
+
+        .tier-card h2 { font-size: clamp(1.7rem, 5vw, 2.2rem); margin: 0; font-weight: 900; }
+        .tier-tagline { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; opacity: 0.9; }
+        
+        .rate { font-size: clamp(2.5rem, 7vw, 3.2rem); font-weight: 900; margin-bottom: 0; line-height: 1; }
+        .fee-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; opacity: 0.8; letter-spacing: 1px; }
+        .retain-label { font-size: 1rem; font-weight: 800; margin-bottom: 25px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .proplus-card .retain-label { border-bottom: 2px solid rgba(0,0,0,0.1); }
+
+        .tier-card ul { list-style: none; padding: 0; flex-grow: 1; }
+        .tier-card li { margin-bottom: 15px; font-size: clamp(1rem, 3vw, 1.15rem); font-weight: 500; position: relative; padding-left: 20px; }
+        .tier-card li::before { content: "•"; position: absolute; left: 0; }
+
+        .btn-center-wrapper { width: 100%; text-align: center; margin-top: 20px; }
+        .learn-more-btn { background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid white; padding: 12px 35px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .learn-more-btn:hover { background: white; color: black; }
+        .proplus-card .learn-more-btn { border: 2px solid #000; color: #000; background: transparent; }
+        .proplus-card .learn-more-btn:hover { background: #000; color: #fff; }
+
+        .fine-print { text-align: center; margin-bottom: 50px; font-size: 0.9rem; color: #444; font-style: italic; padding: 0 40px; line-height: 1.4; }
+
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+        .modal-content { background-color: white; margin: 5% auto; padding: 40px; border-radius: 25px; max-width: 600px; width: 90%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 85vh; overflow-y: auto; }
+        
+        .modal-content h2 { font-weight: 900; font-size: clamp(2.5rem, 10vw, 4.4rem); text-align: center; line-height: 0.9; margin-bottom: 10px; letter-spacing: -2px; }
+        .modal-content h3 { font-weight: 600; font-size: clamp(1rem, 4vw, 1.2rem); color: #777; text-align: center; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 30px; }
+        
+        .modal-list { list-style-type: none; padding: 0; font-size: 1.1rem; color: #333; line-height: 1.6; }
+        .modal-list li { margin-bottom: 20px; }
+        .close-btn { position: absolute; right: 25px; top: 20px; font-size: 32px; cursor: pointer; font-weight: 800; color: #000; }
+
+        .cta-container { text-align: center; margin-top: 50px; }
+        .btn-black { background: var(--brand-black); color: var(--brand-white); padding: 22px 55px; border-radius: 100px; text-decoration: none; font-weight: 700; text-transform: uppercase; display: inline-block; transition: 0.3s; border: 2px solid var(--brand-black); }
+        .btn-black:hover { 
+            background: var(--brand-green); 
+            border-color: var(--brand-green);
+            transform: scale(1.05); 
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo-header">
+    <img src="https://ik.imagekit.io/zmjtdg822h/FSPColourBlackLettersTaglineRight%20(3).png?updatedAt=1755115303385" alt="FilmSCOUTpro Logo" class="main-logo">
+</div>
+
+<div class="container">
+    <header>
+        <h1>
+            <span class="bold-text mobile-stack">Earning</span> 
+            <span class="mobile-stack">with</span> 
+            <span class="no-wrap"><span class="bold-text">FilmSCOUT</span><span class="bold-italic">pro</span></span>
+        </h1>
+        <p class="subheader">
+            A versatile service model built to accommodate <strong>all types of Hosts.</strong>
+        </p>
+    </header>
+
+    <div class="intro-frame">
+        <div class="zoom-content">
+            <p class="top-p">FilmSCOUTpro provides the <strong>full-service management</strong> required to host major film productions on your property. Our custom-built platform is tailored for the unique needs of the industry, managing everything from expert marketing and legal contracts to insurance compliance and payment processing.</p>
+            <p class="bottom-p">Our business model is built on a <strong>performance-based service fee—the more engaged you are, the more you earn.</strong> While every partnership starts with our expert <strong>VIP Concierge support</strong>, active hosts can unlock the <strong>ProHOST Rewards</strong> program to keep more of their location fees. The bottom line—<strong>we only succeed when you do.</strong></p>
+        </div>
+    </div>
+
+    <div class="program-header">The <span class="bold-italic">Pro</span><span class="bold-text">HOST</span> Rewards Program</div>
+
+    <div class="tier-grid">
+        <div class="tier-card vip-card">
+            <h2><i>VIP</i> HOST</h2>
+            <div class="tier-tagline">Your Red Carpet Debut</div>
+            <div class="rate">30%</div>
+            <div class="fee-label">Service Fee*</div>
+            <div class="retain-label">You Retain 70%*</div>
+            <ul>
+                <li>Hands-off boutique representation.</li>
+                <li>Full negotiation and insurance vetting.</li>
+                <li>Dedicated expert support from day one.</li>
+            </ul>
+            <div class="btn-center-wrapper">
+                <button class="learn-more-btn" onclick="openModal('vip')">Learn More</button>
+            </div>
+        </div>
+
+        <div class="tier-card pro-card">
+            <h2><i>Pro</i>HOST</h2>
+            <div class="tier-tagline">The Leading Role</div>
+            <div class="rate">25%</div>
+            <div class="fee-label">Service Fee*</div>
+            <div class="retain-label">You Retain 75%*</div>
+            <ul>
+                <li>Unlock via 5 locations or a 3-month verification streak.</li>
+                <li>Earn more by keeping your listing calendar availability updated.</li>
+                <li>Displays Verified Badge to maximize exposure.</li>
+            </ul>
+            <div class="btn-center-wrapper">
+                <button class="learn-more-btn" onclick="openModal('pro')">Learn More</button>
+            </div>
+        </div>
+
+        <div class="tier-card proplus-card">
+            <h2><i>Pro</i>HOST+</h2>
+            <div class="tier-tagline">Industry Elite</div>
+            <div class="rate">20%</div>
+            <div class="fee-label">Service Fee*</div>
+            <div class="retain-label">You Retain 80%*</div>
+            <ul>
+                <li>For experienced, independent partners.</li>
+                <li>Manage your own inquiries and on-site logistics.</li>
+                <li>Automated payouts via integrated Stripe banking.</li>
+            </ul>
+            <div class="btn-center-wrapper">
+                <button class="learn-more-btn" onclick="openModal('proplus')">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fine-print">
+        *Service Fees are applied to the total gross location fee. Hosts retain the remaining balance of all earnings.
+    </div>
+
+    <div class="cta-container">
+        <a href="/calendar" class="btn-black">Verify My Listing’s Availability!</a>
+    </div>
+</div>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalHeaderContent"></div>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    const modalData = {
+        vip: { title: `<h2><i>VIP</i> HOST</h2><h3>The Hollywood North Treatment</h3>`, body: `<ul class="modal-list"><li>New hosts begin with our <strong>full-service management</strong>, receiving comprehensive support so you can enjoy the perks of the industry without the logistical stress.</li><li><strong>• Full-Service Operations:</strong> We act as your primary liaison, managing every detail including messaging, high-level negotiations, and production logistics.</li><li><strong>• Security & Compliance:</strong> We handle rigorous insurance vetting and legal contract compliance to protect your property.</li><li><strong>• Financial Management:</strong> Enjoy hands-off manual payment processing and performance-based earnings.</li><li style="font-style: italic; margin-top:15px;"><strong>★ Custom Concierge Service (Up to 40%):</strong> Elite proxy service managing the set from load-in to wrap-out.</li></ul>` },
+        pro: { title: `<h2><i>Pro</i>HOST</h2><h3>The Leading Role</h3>`, body: `<ul class="modal-list"><li><strong>• How to Qualify:</strong> Manage 5+ approved locations OR maintain a 3-month verification streak.</li><li><strong>• Optimization:</strong> Earn more by keeping your listing calendar availability updated. A current calendar allows your property to be presented to Productions immediately.</li><li><strong>• Verified Status:</strong> Displays a Verified Badge to signal reliability to top industry Pros.</li><li><strong>• Performance Reward:</strong> This 25% service fee is our way of rewarding hosts who contribute to the operational efficiency of our platform.</li></ul>` },
+        proplus: { title: `<h2><i>Pro</i>HOST+</h2><h3>Industry Elite</h3>`, body: `<ul class="modal-list"><li>"The Professional Partnership." Our lowest rate reserved for experienced, independent partners.</li><li><strong>• Host Responsibility:</strong> You take full ownership of the operational workload, inquiries, and on-site logistics.</li><li><strong>• Verified Availability:</strong> ProHOST+ partners must maintain 100% verified availability.</li><li><strong>• Integrated Payment Protection:</strong> All ProHOST+ partners must integrate with our secure banking system for automated payouts; all transactions must flow exclusively through the FilmSCOUTpro platform to ensure 100% payment protection.</li><li><strong>• Secure Messaging:</strong> Direct-to-production communication with Scouts and Producers via our integrated marketplace messaging system.</li><li style="font-style: italic; margin-top:15px;"><strong>★ Professional Standby:</strong> Rest assured, our experts are never out of reach to ensure your success every step of the way.</li></ul>` }
+    };
+
+    function openModal(tier) {
+        document.getElementById('modalHeaderContent').innerHTML = modalData[tier].title;
+        document.getElementById('modalBody').innerHTML = modalData[tier].body;
+        document.getElementById('infoModal').style.display = 'block';
+    }
+
+    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+    window.onclick = function(event) { if (event.target == document.getElementById('infoModal')) { closeModal(); } }
+</script>
+
+</body>
+</html>
