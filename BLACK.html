@@ -34,33 +34,37 @@
             padding: 0 40px 20px 40px; 
         }
 
-        .external-main-title, .section-header-white { 
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900; 
-            letter-spacing: -0.04em; 
-            margin: 40px 0 30px 0; 
-            line-height: 1.0; 
-            color: var(--brand-white);
-            text-align: center;
-            display: block;
-        }
-
-        .section-header-white {
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            margin: 80px 0 40px 0;
-            text-transform: none;
-        }
-
         .white-frame {
             background-color: var(--brand-white);
             border: 1px solid #333;
             border-radius: 50px;
             padding: 60px; 
+            margin-top: 40px;
             margin-bottom: 30px;
             box-sizing: border-box;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             text-align: left;
             color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .internal-title {
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            font-weight: 900; 
+            letter-spacing: -0.04em; 
+            margin: 0 0 30px 0; 
+            line-height: 1.1; 
+            color: var(--brand-black);
+        }
+
+        .internal-title-centered {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            margin: 0 0 40px 0;
+            line-height: 1.1;
+            color: var(--brand-black);
+            text-align: center;
         }
 
         .contained-subheader { 
@@ -74,10 +78,10 @@
 
         .divider {
             width: 50px; height: 3px;
-            background: var(--text-secondary);
+            background: var(--brand-black);
             margin: 0 0 40px 0;
             border-radius: 2px;
-            opacity: 0.3;
+            opacity: 0.2;
         }
 
         .info-para {
@@ -88,7 +92,6 @@
             font-weight: 500;
         }
 
-        /* TIER GRID: Desktop 3-column */
         .tier-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -104,12 +107,9 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
         }
-        .tier-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-        }
+        .tier-card:hover { transform: translateY(-10px); }
         .vip-card { background-color: var(--brand-pink); }
-        .pro-card { background-color: var(--brand-blue); }
+        .pro-card { background-color: var(--brand-blue); } 
         .proplus-card { background-color: var(--brand-yellow); color: var(--brand-black); }
         
         .tier-card h2 { font-size: 1.7rem; margin: 0; font-weight: 800; text-align: left; }
@@ -142,32 +142,79 @@
         .proplus-card .learn-more-btn { border: 1px solid rgba(0, 0, 0, 0.2); color: var(--brand-black); }
         .proplus-card .learn-more-btn:hover { background: var(--brand-black); color: var(--brand-yellow); transform: scale(1.1); }
 
-        .cta-container { text-align: center; margin-top: 50px; margin-bottom: 96px; }
-        .btn-white { background: var(--brand-white); color: var(--brand-black); padding: 22px 65px; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; display: inline-block; transition: all 0.3s; box-shadow: 0 10px 40px rgba(255, 255, 255, 0.03); }
-        .btn-white:hover { background: var(--brand-green); color: white; transform: scale(1.05); }
+        .qualification-footer { margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; }
+        .qualification-footer p { color: var(--text-secondary); font-size: 1.1rem; font-weight: 500; margin-bottom: 25px; }
 
-        .footer-asset-wrap { text-align: center; width: 100%; margin-bottom: 0; line-height: 0; background: #000; }
-        .final-footer-image { width: 100%; max-width: 840px; height: auto; display: inline-block; filter: brightness(1.6); opacity: 1; vertical-align: bottom; clip-path: inset(1px 1px 1px 1px); }
+        .btn-verify { 
+            background: var(--brand-blue); 
+            color: var(--brand-white); 
+            padding: 18px 50px; 
+            border-radius: 100px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            max-width: 100%; 
+            box-sizing: border-box;
+        }
 
-        /* MOBILE FIX: Force 1-column stack */
+        .btn-verify:hover { background: var(--brand-green); transform: scale(1.05); }
+
+        .footer-asset-wrap { text-align: center; width: 100%; line-height: 0; background: #000; overflow: hidden; position: relative; display: flex; justify-content: center; }
+        .final-footer-image { width: 100%; max-width: 840px; height: auto; filter: brightness(1.6); vertical-align: bottom; clip-path: inset(1px 1px 1px 1px); }
+
+        .footer-mailto-overlay {
+            position: absolute;
+            bottom: 20%; 
+            width: 450px; 
+            height: 300px; 
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* MODAL STYLING: Fixed spacing for mobile */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(8px); 
+        }
+        
+        .modal-content { 
+            background-color: white; 
+            margin: 8vh auto; 
+            padding: 50px 40px; 
+            border-radius: 40px; 
+            max-width: 700px; 
+            width: 85%; /* Default safety width */
+            position: relative; 
+            max-height: 80vh; 
+            overflow-y: auto; 
+            color: var(--text-main); 
+        }
+
         @media (max-width: 950px) {
             .logo-header { text-align: center; padding: 30px 20px; }
             .main-logo { margin: 0 auto; width: 200px; }
-            .white-frame { padding: 40px 20px; text-align: center; border-radius: 35px; }
-            .external-main-title, .section-header-white { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; margin: 20px auto 30px auto !important; }
-            
-            /* FORCED VERTICAL STACK */
+            .white-frame { padding: 40px 20px; text-align: center; }
+            .internal-title, .internal-title-centered { text-align: center; }
             .tier-grid { grid-template-columns: 1fr; gap: 25px; }
-            
-            .contained-subheader, .divider { margin-left: auto; margin-right: auto; text-align: center; }
-            .info-para { text-align: center; }
-            .tier-card { text-align: left; align-items: flex-start; }
-            .learn-more-btn { align-self: flex-start; }
-            .cta-container { margin-bottom: 60px; }
+            .btn-verify { width: 100%; padding: 18px 10px; font-size: 1rem; }
+            .footer-mailto-overlay { width: 100%; height: 250px; bottom: 25%; }
+
+            /* MODAL MOBILE FIX: Ensuring the "half-inch" buffer */
+            .modal-content {
+                width: calc(100% - 80px); /* 40px buffer on each side (half-inch+) */
+                margin: 5vh auto;
+                padding: 40px 25px;
+            }
         }
 
-        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
-        .modal-content { background-color: white; margin: 8vh auto; padding: 50px 40px; border-radius: 40px; max-width: 700px; width: 85%; position: relative; max-height: 80vh; overflow-y: auto; color: var(--text-main); }
         .close-btn { position: absolute; right: 25px; top: 20px; font-size: 32px; cursor: pointer; color: var(--brand-black); }
     </style>
 </head>
@@ -178,22 +225,16 @@
 </div>
 
 <div class="container">
-    <h1 class="external-main-title">
-        <span>Earning</span>
-        <span>with</span>
-        <span>FilmSCOUTpro</span>
-    </h1>
-
     <div class="white-frame">
+        <h1 class="internal-title">Earning with FilmSCOUTpro</h1>
         <p class="contained-subheader">A versatile service model built to accommodate all types of Hosts.</p>
         <div class="divider"></div>
         <p class="info-para">FilmSCOUTpro provides full-service management to host major productions on your property. From expert marketing to secure payouts—our custom platform handles all the heavy lifting.</p>
         <p class="info-para" style="margin-bottom: 0;">Our model is built on performance—the more you engage, the more you earn. Every host joins our network as a VIP, but our active hosts unlock ProHOST Rewards and keep more of their fees. Bottom line—we only succeed when you do!</p>
     </div>
 
-    <h2 class="section-header-white">The ProHOST Rewards Program</h2>
-
     <div class="white-frame">
+        <h2 class="internal-title-centered">The ProHOST Rewards Program</h2>
         <div class="tier-grid">
             <div class="tier-card vip-card">
                 <h2>VIP HOST</h2>
@@ -207,20 +248,18 @@
                 </ul>
                 <button class="learn-more-btn" onclick="openModal('vip')">Learn More</button>
             </div>
-
             <div class="tier-card pro-card">
                 <h2>ProHOST</h2>
                 <div class="tier-tagline">The Leading Role</div>
                 <div class="rate">25%</div>
                 <div class="retain-label">You Retain 75%*</div>
                 <ul>
-                    <li>Unlock via 5 locations or a 3-month verification streak.</li>
+                    <li>Qualify with 5 locations or a 3-month verification streak.</li>
                     <li>Earn more by keeping your listing calendar availability updated.</li>
                     <li>Displays Verified Badge to maximize exposure.</li>
                 </ul>
                 <button class="learn-more-btn" onclick="openModal('pro')">Learn More</button>
             </div>
-
             <div class="tier-card proplus-card">
                 <h2>ProHOST+</h2>
                 <div class="tier-tagline">Industry Elite</div>
@@ -228,19 +267,20 @@
                 <div class="retain-label">You Retain 80%*</div>
                 <ul>
                     <li>For experienced independent hosts.</li>
-                    <li>Manage your own inquiries and on-site logistics.</li>
+                    <li>Must maintain a 100% verified availability streak.</li>
                     <li>Automated payouts via integrated Stripe banking.</li>
                 </ul>
                 <button class="learn-more-btn" onclick="openModal('proplus')">Learn More</button>
             </div>
         </div>
-    </div>
-
-    <div class="cta-container">
-        <a href="/calendar" class="btn-white">Verify My Listings</a>
+        <div class="qualification-footer">
+            <p>Success on FilmSCOUTpro starts with a Green Badge. Ready to start your streak?</p>
+            <a href="/calendar" class="btn-verify">Verify My Listings →</a>
+        </div>
     </div>
 
     <div class="footer-asset-wrap">
+        <a href="mailto:info@filmscoutpro.ca?subject=FilmSCOUTpro%20-%20Contact%20Us%20Today%20-%20General%20Inquiry!" target="_blank" class="footer-mailto-overlay"></a>
         <img src="https://ik.imagekit.io/zmjtdg822h/STEVE'S%20FOLDER/Asset%2012@2x-100.jpg" alt="FilmSCOUTpro Footer" class="final-footer-image">
     </div>
 </div>
@@ -287,13 +327,7 @@
                   </ul>` 
         }
     };
-
-    function openModal(tier) {
-        document.getElementById('modalHeaderContent').innerHTML = modalData[tier].title;
-        document.getElementById('modalBody').innerHTML = modalData[tier].body;
-        document.getElementById('infoModal').style.display = 'block';
-    }
-
+    function openModal(tier) { document.getElementById('modalHeaderContent').innerHTML = modalData[tier].title; document.getElementById('modalBody').innerHTML = modalData[tier].body; document.getElementById('infoModal').style.display = 'block'; }
     function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
     window.onclick = function(event) { if (event.target == document.getElementById('infoModal')) { closeModal(); } }
 </script>
